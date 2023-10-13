@@ -5,6 +5,7 @@ import academy.Devdojo.springboot2.essentials.Request.AnimePutRequestBody;
 import academy.Devdojo.springboot2.essentials.domain.Anime;
 import academy.Devdojo.springboot2.essentials.service.AnimeService;
 import academy.Devdojo.springboot2.essentials.util.DataUtil;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,8 @@ import java.util.List;
 @RequestMapping("animes")
 @Log4j2
 @RequiredArgsConstructor
+
+
 public class AnimeController {
 
 
@@ -24,11 +27,11 @@ public class AnimeController {
     private final AnimeService animeService;
 
     @GetMapping
-    public ResponseEntity <List <Anime>>  list(){
-        log.info(dateutil.formaterLocalDataTimetoDataBaseStyle(LocalDateTime.now()));
+    public ResponseEntity<List<Anime>> list() {
+       log.info(dateutil.formaterLocalDataTimetoDataBaseStyle(LocalDateTime.now()));
         return ResponseEntity.ok(animeService.listAll());
-
     }
+
     @GetMapping(path = "/{id}")
     public ResponseEntity <Anime>  findById(@PathVariable long id ){
         return ResponseEntity.ok(animeService.findByIdOrThowBadRequestException(id));
