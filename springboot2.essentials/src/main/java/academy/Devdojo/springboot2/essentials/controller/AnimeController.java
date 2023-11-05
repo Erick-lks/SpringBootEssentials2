@@ -26,11 +26,17 @@ public class AnimeController {
     private final DataUtil dateutil;
     private final AnimeService animeService;
 
-    @GetMapping(path = "/{id}")
+    @GetMapping
     public ResponseEntity<List<Anime>> list() {
         log.info(dateutil.formaterLocalDataTimetoDataBaseStyle(LocalDateTime.now()));
         return ResponseEntity.ok(animeService.listAll());
     }
+
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Anime> findById(@PathVariable long id) {
+        return ResponseEntity.ok(animeService.findByIdOrThrowBadRequestException(id));
+    }
+
     @GetMapping(path = "/find")
     public ResponseEntity<List<Anime>> findByName(@RequestParam(required = false) String name) {
         return ResponseEntity.ok(animeService.findByName(name));
