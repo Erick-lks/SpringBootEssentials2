@@ -25,7 +25,7 @@ public class Anime {
 
     private Long id;
 
-    private String nome;
+    private String name;
 
 
 

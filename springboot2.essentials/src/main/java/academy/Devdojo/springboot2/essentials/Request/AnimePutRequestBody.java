@@ -9,6 +9,6 @@ import org.springframework.data.annotation.Id;
 public class AnimePutRequestBody {
     private long id;
 
-    private String nome;
+    private String name;
 
 }

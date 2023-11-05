@@ -26,37 +26,32 @@ public class AnimeController {
     private final DataUtil dateutil;
     private final AnimeService animeService;
 
-    @GetMapping
+    @GetMapping(path = "/{id}")
     public ResponseEntity<List<Anime>> list() {
-       log.info(dateutil.formaterLocalDataTimetoDataBaseStyle(LocalDateTime.now()));
+        log.info(dateutil.formaterLocalDataTimetoDataBaseStyle(LocalDateTime.now()));
         return ResponseEntity.ok(animeService.listAll());
     }
-
-    @GetMapping(path = "/{id}")
-    public ResponseEntity <Anime>  findById(@PathVariable long id ){
-        return ResponseEntity.ok(animeService.findByIdOrThowBadRequestException(id));
+    @GetMapping(path = "/find")
+    public ResponseEntity<List<Anime>> findByName(@RequestParam(required = false) String name) {
+        return ResponseEntity.ok(animeService.findByName(name));
     }
-
-
     @PostMapping
-
-    public ResponseEntity<Anime> save (@RequestBody AnimePostRequestBody animePostRequestBody){
-       return new ResponseEntity<>(animeService.save(animePostRequestBody), HttpStatus.CREATED);
-
+    public ResponseEntity<Anime> save(@RequestBody AnimePostRequestBody animePostRequestBody) {
+        return new ResponseEntity<>(animeService.save(animePostRequestBody), HttpStatus.CREATED);
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity <Void>  delete (@PathVariable long id ){
+    public ResponseEntity<Void> delete(@PathVariable long id) {
         animeService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+
     @PutMapping
-    public ResponseEntity <Void>replace(@RequestBody AnimePutRequestBody animePutRequestBody){
+    public ResponseEntity<Void> replace(@RequestBody AnimePutRequestBody animePutRequestBody) {
         animeService.replace(animePutRequestBody);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 
 
 }
