@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 @RestController
@@ -42,7 +43,7 @@ public class AnimeController {
         return ResponseEntity.ok(animeService.findByName(name));
     }
     @PostMapping
-    public ResponseEntity<Anime> save(@RequestBody AnimePostRequestBody animePostRequestBody) {
+    public ResponseEntity<Anime> save(@RequestBody @Valid AnimePostRequestBody animePostRequestBody) {
         return new ResponseEntity<>(animeService.save(animePostRequestBody), HttpStatus.CREATED);
     }
 
