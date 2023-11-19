@@ -1,8 +1,7 @@
 package academy.Devdojo.springboot2.essentials.Exception;
 
-import lombok.Builder;
+
 import lombok.Data;
-import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
